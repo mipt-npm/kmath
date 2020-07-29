@@ -1,9 +1,9 @@
-package scientifik.kmath.geometry.experimental.transformations
+package scientifik.kmath.geometry.transformations
 
-import scientifik.kmath.geometry.experimental.Dimension
-import scientifik.kmath.geometry.experimental.Line
-import scientifik.kmath.geometry.experimental.Vector
-import scientifik.kmath.geometry.experimental.VectorSpace
+import scientifik.kmath.dimensions.Dimension
+import scientifik.kmath.geometry.Line
+import scientifik.kmath.geometry.Vector
+import scientifik.kmath.geometry.VectorSpace
 
 class ProjectionIntoLine<T, D : Dimension, V : Vector<T, D>>(
         private val vectorSpace: VectorSpace<T, D, V>,

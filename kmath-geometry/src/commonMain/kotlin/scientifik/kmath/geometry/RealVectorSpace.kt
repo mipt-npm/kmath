@@ -1,8 +1,8 @@
-package scientifik.kmath.geometry.experimental
+package scientifik.kmath.geometry
 
+import scientifik.kmath.dimensions.*
 import scientifik.kmath.operations.Field
 import scientifik.kmath.operations.RealField
-import scientifik.kmath.structures.asSequence
 import kotlin.math.sqrt
 
 data class RealVector<D : Dimension>(private val array: DoubleArray) : Vector<Double, D> {
@@ -37,7 +37,8 @@ fun vectorOf(a1: Double, a2: Double, a3: Double, a4: Double, a5: Double): RealVe
 
 // TODO optimize by removing fold?
 class RealVectorSpace<D : Dimension>(override val dim: D) : VectorSpace<Double, D, RealVector<D>> {
-    private val range = 0 until dim.size
+    private val dimSize = dim.dim.toInt()
+    private val range = 0 until dimSize
 
     override val field: Field<Double> = RealField
 
@@ -51,26 +52,20 @@ class RealVectorSpace<D : Dimension>(override val dim: D) : VectorSpace<Double, 
             range.fold(0.0) { acc, index -> acc + a[index] * b[index] }
 
     override fun add(a: RealVector<D>, b: RealVector<D>): RealVector<D> =
-            RealVector(DoubleArray(dim.size) { index -> a[index] + b[index] })
+            RealVector(DoubleArray(dimSize) { index -> a[index] + b[index] })
 
     override fun multiply(a: RealVector<D>, k: Number): RealVector<D> =
-            RealVector(DoubleArray(dim.size) { index -> a[index] * k.toDouble() })
+            RealVector(DoubleArray(dimSize) { index -> a[index] * k.toDouble() })
 
-    override val zero: RealVector<D> = RealVector(DoubleArray(dim.size))
+    override val zero: RealVector<D> = RealVector(DoubleArray(dimSize))
 
 
     override fun vectorFrom(x: Sequence<Double>): RealVector<D> {
         val array = x.toList().toDoubleArray()
-        require(array.size == dim.size)
+        require(array.size == dimSize)
         return RealVector(array)
     }
 
-    // TODO optimize?
-    override fun cast(v: Vector<Double, D>): RealVector<D> = if (v is RealVector<D>) v else {
-        val array = v.asSequence().toList().toDoubleArray()
-        require(array.size == dim.size)
-        RealVector(array)
-    }
 }
 
 val real1DVectorSpace = RealVectorSpace(D1)

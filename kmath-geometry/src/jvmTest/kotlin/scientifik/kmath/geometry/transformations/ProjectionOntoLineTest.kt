@@ -1,7 +1,7 @@
-package scientifik.kmath.geometry.experimental.transformations
+package scientifik.kmath.geometry.transformations
 
 import org.junit.jupiter.api.Test
-import scientifik.kmath.geometry.experimental.*
+import scientifik.kmath.geometry.*
 
 internal class ProjectionOntoLineTest {
     @Test
@@ -41,7 +41,7 @@ internal class ProjectionOntoLineTest {
     }
 
     @Test
-    fun projectionIntoLine2d() {
+    fun projectionOntoLine2d() {
         with(real2DVectorSpace) {
             val a = 5.0
             val b = -3.0
@@ -57,7 +57,7 @@ internal class ProjectionOntoLineTest {
     }
 
     @Test
-    fun projectionIntoLine3d() {
+    fun projectionOntoLine3d() {
         TODO()
     }
 }

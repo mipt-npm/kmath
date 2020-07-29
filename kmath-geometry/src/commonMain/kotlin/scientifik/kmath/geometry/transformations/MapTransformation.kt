@@ -1,8 +1,8 @@
-package scientifik.kmath.geometry.experimental.transformations
+package scientifik.kmath.geometry.transformations
 
-import scientifik.kmath.geometry.experimental.Dimension
-import scientifik.kmath.geometry.experimental.Vector
-import scientifik.kmath.geometry.experimental.VectorSpace
+import scientifik.kmath.dimensions.Dimension
+import scientifik.kmath.geometry.Vector
+import scientifik.kmath.geometry.VectorSpace
 
 class MapTransformation<T1, D1 : Dimension, V1 : Vector<T1, D1>, T2, D2 : Dimension, V2 : Vector<T2, D2>>(
         override val input: VectorSpace<T1, D1, V1>,
@@ -20,7 +20,6 @@ fun <T, D1 : Dimension, V1 : Vector<T, D1>, D2 : Dimension, V2 : Vector<T, D2>> 
 fun <T, D : Dimension, V : Vector<T, D>> VectorSpace<T, D, V>.map(
         map: (V) -> V
 ): Transformation<T, D, V> = MapTransformation(this, this, map)
-
 
 fun <TIn, DIn : Dimension, VIn : Vector<TIn, DIn>,
         TInner, DInner : Dimension, VInner : Vector<TInner, DInner>,

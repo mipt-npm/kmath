@@ -1,5 +1,6 @@
-package scientifik.kmath.geometry.experimental
+package scientifik.kmath.geometry
 
+import scientifik.kmath.dimensions.Dimension
 import kotlin.math.abs
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -27,4 +28,8 @@ fun <D : Dimension> assertVectorEquals(expected: Vector<Double, D>, actual: Vect
         val actualValue = actual[i]
         assertTrue(abs(expectedValue - actualValue) < eps, "Component of the vector at index $i '$actualValue' does equal to expected value '$expectedValue'")
     }
+}
+
+object D8 : Dimension {
+    override val dim: UInt get() = 8U
 }

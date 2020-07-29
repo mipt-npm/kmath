@@ -22,6 +22,10 @@ expect fun Dimension.Companion.of(dim: UInt): Dimension
 
 inline fun <reified D : Dimension> Dimension.Companion.dim(): UInt = D::class.dim()
 
+object D0 : Dimension {
+    override val dim: UInt get() = 0U
+}
+
 object D1 : Dimension {
     override val dim: UInt get() = 1U
 }
@@ -31,5 +35,13 @@ object D2 : Dimension {
 }
 
 object D3 : Dimension {
-    override val dim: UInt get() = 31U
+    override val dim: UInt get() = 3U
+}
+
+object D4 : Dimension {
+    override val dim: UInt get() = 4U
+}
+
+object D5 : Dimension {
+    override val dim: UInt get() = 5U
 }

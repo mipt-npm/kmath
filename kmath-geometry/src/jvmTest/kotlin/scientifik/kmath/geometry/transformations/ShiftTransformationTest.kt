@@ -1,7 +1,7 @@
-package scientifik.kmath.geometry.experimental.transformations
+package scientifik.kmath.geometry.transformations
 
 import org.junit.jupiter.api.Test
-import scientifik.kmath.geometry.experimental.*
+import scientifik.kmath.geometry.*
 
 internal class ShiftTransformationTest {
     @Test

@@ -1,12 +1,13 @@
-package scientifik.kmath.geometry.experimental
+package scientifik.kmath.geometry
 
-import scientifik.kmath.geometry.experimental.transformations.mapTo
-import scientifik.kmath.geometry.experimental.transformations.projection
-import scientifik.kmath.geometry.experimental.transformations.shiftBy
+import scientifik.kmath.dimensions.D4
+import scientifik.kmath.geometry.transformations.mapTo
+import scientifik.kmath.geometry.transformations.projection
+import scientifik.kmath.geometry.transformations.shiftBy
 import scientifik.kmath.operations.RealField
 import kotlin.math.sqrt
 
-fun main() {
+fun main2() {
     with(VectorSpaceImpl(D4, RealField, ::sqrt)) {
         val a: VectorImpl<Double, D4> = VectorImpl(listOf(1.0, 2.0, 3.0, 5.0))
         val b = vectorOf(2.0, -3.0, 4.0, 5.0)
@@ -34,5 +35,30 @@ fun main() {
         )
 
         println("""Resulting distance: $distance""")
+    }
+}
+
+fun main() {
+    with(Euclidean3DSpace) {
+        val a = Vector3D(1.0, -2.0, 0.01)
+        val b = Vector3D(1.0, 2.0, 3.0)
+
+        println(a - b)
+        println(a + b)
+        println(a * 4)
+        println(a dot b)
+        println(a.distanceTo(b))
+        println(distance(a, b))
+
+        val transformation = projection(Vector3D(0.0, 1.0, 0.0), zero)
+                .mapTo(Euclidean2DSpace) { vector -> Vector2D(vector[0], vector[2]) }
+                .shiftBy(Vector2D(5.0, -9.9))
+
+        val distance = Euclidean2DSpace.distance(
+                transformation(a + 3 * b),
+                transformation((a dot b) * b - a / norm(b))
+        )
+
+        println(distance)
     }
 }

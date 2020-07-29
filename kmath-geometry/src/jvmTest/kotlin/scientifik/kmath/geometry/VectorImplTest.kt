@@ -1,7 +1,8 @@
-package scientifik.kmath.geometry.experimental
+package scientifik.kmath.geometry
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import scientifik.kmath.dimensions.*
 import scientifik.kmath.structures.asSequence
 
 internal class VectorImplTest {
@@ -46,6 +47,6 @@ internal class VectorImplTest {
         assertEquals(VectorImpl<Int, D1>(listOf(1)), vectorOf(1))
         assertEquals(VectorImpl<Int, D2>(listOf(1, 2)), vectorOf(1, 2))
         assertEquals(VectorImpl<Int, D3>(listOf(1, 2, 3)), vectorOf(1, 2, 3))
-        assertEquals(VectorImpl<Int, D8>(listOf(1, 2, 3, 4, 5)), vectorOf(1, 2, 3, 4, 5))
+        assertEquals(VectorImpl<Int, D5>(listOf(1, 2, 3, 4, 5)), vectorOf(1, 2, 3, 4, 5))
     }
 }

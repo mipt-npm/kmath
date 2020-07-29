@@ -1,21 +1,23 @@
 package scientifik.kmath.geometry
 
+import scientifik.kmath.dimensions.D3
 import scientifik.kmath.linear.Point
+import scientifik.kmath.operations.Field
+import scientifik.kmath.operations.RealField
 import scientifik.kmath.operations.SpaceElement
 import kotlin.math.sqrt
 
-
-interface Vector3D : Point<Double>, Vector, SpaceElement<Vector3D, Vector3D, Euclidean3DSpace> {
-    val x: Double
-    val y: Double
-    val z: Double
-
+data class Vector3D(
+        val x: Double,
+        val y: Double,
+        val z: Double
+) : Point<Double>, Vector<Double, D3>, SpaceElement<Vector3D, Vector3D, Euclidean3DSpace> {
     override val size: Int get() = 3
 
     override fun get(index: Int): Double = when (index) {
-        1 -> x
-        2 -> y
-        3 -> z
+        0 -> x
+        1 -> y
+        2 -> z
         else -> error("Accessing outside of point bounds")
     }
 
@@ -28,30 +30,26 @@ interface Vector3D : Point<Double>, Vector, SpaceElement<Vector3D, Vector3D, Euc
     override fun Vector3D.wrap(): Vector3D = this
 }
 
-@Suppress("FunctionName")
-fun Vector3D(x: Double, y: Double, z: Double): Vector3D = Vector3DImpl(x, y, z)
-
-val Vector3D.r: Double get() = Euclidean3DSpace.run { sqrt(norm()) }
-
-private data class Vector3DImpl(
-    override val x: Double,
-    override val y: Double,
-    override val z: Double
-) : Vector3D
-
-object Euclidean3DSpace : GeometrySpace<Vector3D> {
+object Euclidean3DSpace : VectorSpace<Double, D3, Vector3D> {
+    override val dim: D3 get() = D3
+    override val field: Field<Double> get() = RealField
     override val zero: Vector3D = Vector3D(0.0, 0.0, 0.0)
 
-    fun Vector3D.norm(): Double = sqrt(x * x + y * y + z * z)
+    override fun norm(a: Vector3D): Double = with(a) { sqrt(x * x + y * y + z * z) }
 
-    override fun Vector3D.distanceTo(other: Vector3D): Double = (this - other).norm()
+    override fun dotProduct(a: Vector3D, b: Vector3D): Double =
+            a.x * b.x + a.y * b.y + a.z * b.z
 
     override fun add(a: Vector3D, b: Vector3D): Vector3D =
-        Vector3D(a.x + b.x, a.y + b.y, a.z + b.z)
+            Vector3D(a.x + b.x, a.y + b.y, a.z + b.z)
 
     override fun multiply(a: Vector3D, k: Number): Vector3D =
-        Vector3D(a.x * k.toDouble(), a.y * k.toDouble(), a.z * k.toDouble())
+            Vector3D(a.x * k.toDouble(), a.y * k.toDouble(), a.z * k.toDouble())
 
-    override fun Vector3D.dot(other: Vector3D): Double =
-        x * other.x + y * other.y + z * other.z
+    override fun vectorFrom(x: Sequence<Double>): Vector3D {
+        val iterator = x.iterator()
+        val result = Vector3D(iterator.next(), iterator.next(), iterator.next())
+        require(!iterator.hasNext())
+        return result
+    }
 }
