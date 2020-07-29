@@ -1,8 +1,8 @@
 package scientifik.kmath.geometry.transformations
 
 import scientifik.kmath.dimensions.Dimension
+import scientifik.kmath.geometry.InnerProductSpace
 import scientifik.kmath.geometry.Vector
-import scientifik.kmath.geometry.VectorSpace
 
 data class CompositeRelation<
         TIn, DIn : Dimension, VIn : Vector<TIn, DIn>,
@@ -13,8 +13,8 @@ data class CompositeRelation<
         private val second: Relation<TInner, DInner, VInner, TOut, DOut, VOut>
 ) : Relation<TIn, DIn, VIn, TOut, DOut, VOut> {
     override fun invoke(v: VIn): VOut = second.invoke(first.invoke(v))
-    override val input: VectorSpace<TIn, DIn, VIn> get() = first.input
-    override val output: VectorSpace<TOut, DOut, VOut> get() = second.output
+    override val input: InnerProductSpace<TIn, DIn, VIn> get() = first.input
+    override val output: InnerProductSpace<TOut, DOut, VOut> get() = second.output
 }
 
 fun <TIn, DIn : Dimension, VIn : Vector<TIn, DIn>,

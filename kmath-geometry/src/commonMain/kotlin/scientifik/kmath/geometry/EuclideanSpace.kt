@@ -24,20 +24,17 @@ fun <T> vectorOf(a1: T, a2: T, a3: T, a4: T, a5: T): Vector<T, D5> = VectorImpl(
 
 private fun <T> Field<T>.square(a: T): T = a * a
 
-class VectorSpaceImpl<T : Any, D : Dimension>(
+class EuclideanSpace<T : Any, D : Dimension>(
         override val dim: D,
-        override val field: Field<T>,
-        private val squareRoot: (T) -> T
-) : VectorSpace<T, D, Vector<T, D>> {
-    constructor(dim: D, field: ExtendedField<T>) : this(dim, field, field::sqrt)
-
+        override val field: ExtendedField<T>
+) : InnerProductSpace<T, D, Vector<T, D>> {
     private val dimSize = dim.dim.toInt()
 
     override fun distance(a: Vector<T, D>, b: Vector<T, D>): T =
-            squareRoot.invoke(a.asSequence().zip(b.asSequence()).map { (l, r) -> with(field) { square(l - r) } }.reduce(field::add))
+            field.sqrt(a.asSequence().zip(b.asSequence()).map { (l, r) -> with(field) { square(l - r) } }.reduce(field::add))
 
     override fun norm(a: Vector<T, D>): T =
-            squareRoot.invoke(dotProduct(a, a))
+            field.sqrt(dotProduct(a, a))
 
     override fun dotProduct(a: Vector<T, D>, b: Vector<T, D>): T =
             a.asSequence().zip(b.asSequence()).map { (l, r) -> field.multiply(l, r) }.reduce(field::add)

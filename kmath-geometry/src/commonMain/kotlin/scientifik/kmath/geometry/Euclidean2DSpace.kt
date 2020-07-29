@@ -2,7 +2,7 @@ package scientifik.kmath.geometry
 
 import scientifik.kmath.dimensions.D2
 import scientifik.kmath.linear.Point
-import scientifik.kmath.operations.Field
+import scientifik.kmath.operations.ExtendedField
 import scientifik.kmath.operations.RealField
 import scientifik.kmath.operations.SpaceElement
 import kotlin.math.sqrt
@@ -31,9 +31,9 @@ data class Vector2D(
 /**
  * 2D Euclidean space
  */
-object Euclidean2DSpace : VectorSpace<Double, D2, Vector2D> {
+object Euclidean2DSpace : InnerProductSpace<Double, D2, Vector2D> {
     override val dim: D2 get() = D2
-    override val field: Field<Double> get() = RealField
+    override val field: ExtendedField<Double> get() = RealField
     override val zero: Vector2D = Vector2D(0.0, 0.0)
 
     override fun norm(a: Vector2D): Double = with(a) { sqrt(x * x + y * y) }

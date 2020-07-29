@@ -3,12 +3,13 @@ package scientifik.kmath.geometry
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import scientifik.kmath.dimensions.*
+import scientifik.kmath.operations.FloatField
 import scientifik.kmath.operations.RealField
 
-internal class RealVectorSpaceTest {
+internal class EuclideanSpaceTest {
     @Test
     fun distance() {
-        with(real3DVectorSpace) {
+        with(EuclideanSpace(D3, RealField)) {
             assertEquals(0.0, distance(zero, zero))
             assertEquals(1.0, distance(zero, vectorOf(1.0, 0.0, 0.0)))
             assertEquals(kotlin.math.sqrt(5.000001), distance(vectorOf(1.0, -2.0, 0.001), zero))
@@ -23,7 +24,7 @@ internal class RealVectorSpaceTest {
 
     @Test
     fun norm() {
-        with(real3DVectorSpace) {
+        with(EuclideanSpace(D3, RealField)) {
             assertEquals(0.0, norm(zero))
             assertEquals(1.0, norm(vectorOf(1.0, 0.0, 0.0)))
             assertEquals(kotlin.math.sqrt(3.0), norm(vectorOf(1.0, 1.0, 1.0)))
@@ -33,7 +34,7 @@ internal class RealVectorSpaceTest {
 
     @Test
     fun dotProduct() {
-        with(real3DVectorSpace) {
+        with(EuclideanSpace(D3, RealField)) {
             assertEquals(0.0, zero dot zero)
             assertEquals(0.0, zero dot vectorOf(1.0, 0.0, 0.0))
             assertEquals(0.0, vectorOf(1.0, -2.0, 0.001) dot zero)
@@ -50,7 +51,7 @@ internal class RealVectorSpaceTest {
 
     @Test
     fun add() {
-        with(real3DVectorSpace) {
+        with(EuclideanSpace(D3, RealField)) {
             assertVectorEquals(
                     vectorOf(1.0, -2.0, 0.001),
                     vectorOf(1.0, -2.0, 0.001) + zero
@@ -64,34 +65,31 @@ internal class RealVectorSpaceTest {
 
     @Test
     fun multiply() {
-        with(real3DVectorSpace) {
+        with(EuclideanSpace(D3, RealField)) {
             assertVectorEquals(vectorOf(2.0, -4.0, 0.0), multiply(vectorOf(1.0, -2.0, 0.0), 2))
         }
     }
 
     @Test
     fun getZero() {
-        assertVectorEquals(vectorOf(0.0), RealVectorSpace(D1).zero)
-        assertVectorEquals(vectorOf(0.0, 0.0), RealVectorSpace(D2).zero)
-        assertVectorEquals(vectorOf(0.0, 0.0, 0.0), RealVectorSpace(D3).zero)
-        assertVectorEquals(vectorOf(0.0, 0.0, 0.0, 0.0, 0.0), RealVectorSpace(D5).zero)
+        assertVectorEquals(vectorOf(0.0), EuclideanSpace(D1, RealField).zero)
+        assertVectorEquals(vectorOf(0.0, 0.0), EuclideanSpace(D2, RealField).zero)
+        assertVectorEquals(vectorOf(0.0, 0.0, 0.0), EuclideanSpace(D3, RealField).zero)
+        assertVectorEquals(vectorOf(0.0, 0.0, 0.0, 0.0, 0.0), EuclideanSpace(D5, RealField).zero)
     }
 
     @Test
     fun getDim() {
-        assertEquals(D0, RealVectorSpace(D0).dim)
-        assertEquals(D1, RealVectorSpace(D1).dim)
-        assertEquals(D2, RealVectorSpace(D2).dim)
-        assertEquals(D3, RealVectorSpace(D3).dim)
-        assertEquals(D8, RealVectorSpace(D8).dim)
+        assertEquals(D0, EuclideanSpace(D0, RealField).dim)
+        assertEquals(D1, EuclideanSpace(D1, RealField).dim)
+        assertEquals(D2, EuclideanSpace(D2, RealField).dim)
+        assertEquals(D3, EuclideanSpace(D3, RealField).dim)
+        assertEquals(D8, EuclideanSpace(D8, RealField).dim)
     }
 
     @Test
     fun getField() {
-        assertEquals(RealField, RealVectorSpace(D0).field)
-        assertEquals(RealField, RealVectorSpace(D1).field)
-        assertEquals(RealField, RealVectorSpace(D2).field)
-        assertEquals(RealField, RealVectorSpace(D3).field)
-        assertEquals(RealField, RealVectorSpace(D8).field)
+        assertEquals(RealField, EuclideanSpace(D3, RealField).field)
+        assertEquals(FloatField, EuclideanSpace(D3, FloatField).field)
     }
 }

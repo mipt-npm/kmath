@@ -3,18 +3,12 @@ package scientifik.kmath.geometry
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import scientifik.kmath.dimensions.*
-import scientifik.kmath.geometry.D8
-import scientifik.kmath.geometry.VectorSpaceImpl
-import scientifik.kmath.geometry.assertVectorEquals
-import scientifik.kmath.geometry.vectorOf
-import scientifik.kmath.operations.ComplexField
-import scientifik.kmath.operations.FloatField
 import scientifik.kmath.operations.RealField
 
-internal class VectorSpaceImplTest {
+internal class RealEuclideanVectorSpaceTest {
     @Test
     fun distance() {
-        with(VectorSpaceImpl(D3, RealField)) {
+        with(real3DVectorSpace) {
             assertEquals(0.0, distance(zero, zero))
             assertEquals(1.0, distance(zero, vectorOf(1.0, 0.0, 0.0)))
             assertEquals(kotlin.math.sqrt(5.000001), distance(vectorOf(1.0, -2.0, 0.001), zero))
@@ -29,7 +23,7 @@ internal class VectorSpaceImplTest {
 
     @Test
     fun norm() {
-        with(VectorSpaceImpl(D3, RealField)) {
+        with(real3DVectorSpace) {
             assertEquals(0.0, norm(zero))
             assertEquals(1.0, norm(vectorOf(1.0, 0.0, 0.0)))
             assertEquals(kotlin.math.sqrt(3.0), norm(vectorOf(1.0, 1.0, 1.0)))
@@ -39,7 +33,7 @@ internal class VectorSpaceImplTest {
 
     @Test
     fun dotProduct() {
-        with(VectorSpaceImpl(D3, RealField)) {
+        with(real3DVectorSpace) {
             assertEquals(0.0, zero dot zero)
             assertEquals(0.0, zero dot vectorOf(1.0, 0.0, 0.0))
             assertEquals(0.0, vectorOf(1.0, -2.0, 0.001) dot zero)
@@ -56,7 +50,7 @@ internal class VectorSpaceImplTest {
 
     @Test
     fun add() {
-        with(VectorSpaceImpl(D3, RealField)) {
+        with(real3DVectorSpace) {
             assertVectorEquals(
                     vectorOf(1.0, -2.0, 0.001),
                     vectorOf(1.0, -2.0, 0.001) + zero
@@ -70,32 +64,34 @@ internal class VectorSpaceImplTest {
 
     @Test
     fun multiply() {
-        with(VectorSpaceImpl(D3, RealField)) {
+        with(real3DVectorSpace) {
             assertVectorEquals(vectorOf(2.0, -4.0, 0.0), multiply(vectorOf(1.0, -2.0, 0.0), 2))
         }
     }
 
     @Test
     fun getZero() {
-        assertVectorEquals(vectorOf(0.0), VectorSpaceImpl(D1, RealField).zero)
-        assertVectorEquals(vectorOf(0.0, 0.0), VectorSpaceImpl(D2, RealField).zero)
-        assertVectorEquals(vectorOf(0.0, 0.0, 0.0), VectorSpaceImpl(D3, RealField).zero)
-        assertVectorEquals(vectorOf(0.0, 0.0, 0.0, 0.0, 0.0), VectorSpaceImpl(D5, RealField).zero)
+        assertVectorEquals(vectorOf(0.0), RealEuclideanVectorSpace(D1).zero)
+        assertVectorEquals(vectorOf(0.0, 0.0), RealEuclideanVectorSpace(D2).zero)
+        assertVectorEquals(vectorOf(0.0, 0.0, 0.0), RealEuclideanVectorSpace(D3).zero)
+        assertVectorEquals(vectorOf(0.0, 0.0, 0.0, 0.0, 0.0), RealEuclideanVectorSpace(D5).zero)
     }
 
     @Test
     fun getDim() {
-        assertEquals(D0, VectorSpaceImpl(D0, RealField).dim)
-        assertEquals(D1, VectorSpaceImpl(D1, RealField).dim)
-        assertEquals(D2, VectorSpaceImpl(D2, RealField).dim)
-        assertEquals(D3, VectorSpaceImpl(D3, RealField).dim)
-        assertEquals(D8, VectorSpaceImpl(D8, RealField).dim)
+        assertEquals(D0, RealEuclideanVectorSpace(D0).dim)
+        assertEquals(D1, RealEuclideanVectorSpace(D1).dim)
+        assertEquals(D2, RealEuclideanVectorSpace(D2).dim)
+        assertEquals(D3, RealEuclideanVectorSpace(D3).dim)
+        assertEquals(D8, RealEuclideanVectorSpace(D8).dim)
     }
 
     @Test
     fun getField() {
-        assertEquals(RealField, VectorSpaceImpl(D3, RealField).field)
-        assertEquals(FloatField, VectorSpaceImpl(D3, FloatField, FloatField::sqrt).field)
-        assertEquals(ComplexField, VectorSpaceImpl(D3, ComplexField, ComplexField::sqrt).field)
+        assertEquals(RealField, RealEuclideanVectorSpace(D0).field)
+        assertEquals(RealField, RealEuclideanVectorSpace(D1).field)
+        assertEquals(RealField, RealEuclideanVectorSpace(D2).field)
+        assertEquals(RealField, RealEuclideanVectorSpace(D3).field)
+        assertEquals(RealField, RealEuclideanVectorSpace(D8).field)
     }
 }

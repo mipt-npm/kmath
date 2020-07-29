@@ -1,12 +1,12 @@
 package scientifik.kmath.geometry.transformations
 
 import scientifik.kmath.dimensions.Dimension
+import scientifik.kmath.geometry.InnerProductSpace
 import scientifik.kmath.geometry.Line
 import scientifik.kmath.geometry.Vector
-import scientifik.kmath.geometry.VectorSpace
 
 class ProjectionIntoLine<T, D : Dimension, V : Vector<T, D>>(
-        private val vectorSpace: VectorSpace<T, D, V>,
+        private val vectorSpace: InnerProductSpace<T, D, V>,
         private val base: V,
         private val direction: V
 ) : Transformation<T, D, V> {
@@ -20,11 +20,11 @@ class ProjectionIntoLine<T, D : Dimension, V : Vector<T, D>>(
         }
     }
 
-    override val input: VectorSpace<T, D, V> get() = vectorSpace
-    override val output: VectorSpace<T, D, V> get() = vectorSpace
+    override val input: InnerProductSpace<T, D, V> get() = vectorSpace
+    override val output: InnerProductSpace<T, D, V> get() = vectorSpace
 }
 
-fun <T, D : Dimension, V : Vector<T, D>> VectorSpace<T, D, V>.projection(line: Line<T, D, V>): Transformation<T, D, V> =
+fun <T, D : Dimension, V : Vector<T, D>> InnerProductSpace<T, D, V>.projection(line: Line<T, D, V>): Transformation<T, D, V> =
         ProjectionIntoLine(this, line.base, line.direction)
 
 fun <T1, D1 : Dimension, V1 : Vector<T1, D1>, T2, D2 : Dimension, V2 : Vector<T2, D2>> Relation<T1, D1, V1, T2, D2, V2>.projection(

@@ -2,7 +2,7 @@ package scientifik.kmath.geometry
 
 import scientifik.kmath.dimensions.D3
 import scientifik.kmath.linear.Point
-import scientifik.kmath.operations.Field
+import scientifik.kmath.operations.ExtendedField
 import scientifik.kmath.operations.RealField
 import scientifik.kmath.operations.SpaceElement
 import kotlin.math.sqrt
@@ -30,9 +30,9 @@ data class Vector3D(
     override fun Vector3D.wrap(): Vector3D = this
 }
 
-object Euclidean3DSpace : VectorSpace<Double, D3, Vector3D> {
+object Euclidean3DSpace : InnerProductSpace<Double, D3, Vector3D> {
     override val dim: D3 get() = D3
-    override val field: Field<Double> get() = RealField
+    override val field: ExtendedField<Double> get() = RealField
     override val zero: Vector3D = Vector3D(0.0, 0.0, 0.0)
 
     override fun norm(a: Vector3D): Double = with(a) { sqrt(x * x + y * y + z * z) }

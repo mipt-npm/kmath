@@ -5,10 +5,9 @@ import scientifik.kmath.geometry.transformations.mapTo
 import scientifik.kmath.geometry.transformations.projection
 import scientifik.kmath.geometry.transformations.shiftBy
 import scientifik.kmath.operations.RealField
-import kotlin.math.sqrt
 
 fun main2() {
-    with(VectorSpaceImpl(D4, RealField, ::sqrt)) {
+    with(EuclideanSpace(D4, RealField)) {
         val a: VectorImpl<Double, D4> = VectorImpl(listOf(1.0, 2.0, 3.0, 5.0))
         val b = vectorOf(2.0, -3.0, 4.0, 5.0)
         println(a - b)

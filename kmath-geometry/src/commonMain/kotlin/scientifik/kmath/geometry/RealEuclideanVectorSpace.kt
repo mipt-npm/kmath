@@ -1,7 +1,7 @@
 package scientifik.kmath.geometry
 
 import scientifik.kmath.dimensions.*
-import scientifik.kmath.operations.Field
+import scientifik.kmath.operations.ExtendedField
 import scientifik.kmath.operations.RealField
 import kotlin.math.sqrt
 
@@ -36,11 +36,11 @@ fun vectorOf(a1: Double, a2: Double, a3: Double, a4: Double): RealVector<D4> = R
 fun vectorOf(a1: Double, a2: Double, a3: Double, a4: Double, a5: Double): RealVector<D5> = RealVector(doubleArrayOf(a1, a2, a3, a4, a5))
 
 // TODO optimize by removing fold?
-class RealVectorSpace<D : Dimension>(override val dim: D) : VectorSpace<Double, D, RealVector<D>> {
+class RealEuclideanVectorSpace<D : Dimension>(override val dim: D) : InnerProductSpace<Double, D, RealVector<D>> {
     private val dimSize = dim.dim.toInt()
     private val range = 0 until dimSize
 
-    override val field: Field<Double> = RealField
+    override val field: ExtendedField<Double> = RealField
 
     override fun distance(a: RealVector<D>, b: RealVector<D>): Double =
             sqrt(range.fold(0.0) { acc, index -> val d = a[index] - b[index]; acc + d * d })
@@ -68,8 +68,8 @@ class RealVectorSpace<D : Dimension>(override val dim: D) : VectorSpace<Double, 
 
 }
 
-val real1DVectorSpace = RealVectorSpace(D1)
-val real2DVectorSpace = RealVectorSpace(D2)
-val real3DVectorSpace = RealVectorSpace(D3)
-val real4DVectorSpace = RealVectorSpace(D4)
-val real5DVectorSpace = RealVectorSpace(D5)
+val real1DVectorSpace = RealEuclideanVectorSpace(D1)
+val real2DVectorSpace = RealEuclideanVectorSpace(D2)
+val real3DVectorSpace = RealEuclideanVectorSpace(D3)
+val real4DVectorSpace = RealEuclideanVectorSpace(D4)
+val real5DVectorSpace = RealEuclideanVectorSpace(D5)
