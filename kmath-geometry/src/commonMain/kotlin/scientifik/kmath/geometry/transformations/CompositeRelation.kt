@@ -4,6 +4,9 @@ import scientifik.kmath.dimensions.Dimension
 import scientifik.kmath.geometry.InnerProductSpace
 import scientifik.kmath.geometry.Vector
 
+/**
+ * Composition of 2 functions, i.e. composite(first, second)(arg) = second(first(arg))
+ */
 data class CompositeRelation<
         TIn, DIn : Dimension, VIn : Vector<TIn, DIn>,
         TInner, DInner : Dimension, VInner : Vector<TInner, DInner>,

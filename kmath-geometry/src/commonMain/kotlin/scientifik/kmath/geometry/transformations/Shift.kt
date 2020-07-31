@@ -4,6 +4,9 @@ import scientifik.kmath.dimensions.Dimension
 import scientifik.kmath.geometry.InnerProductSpace
 import scientifik.kmath.geometry.Vector
 
+/**
+ * Transformation of a vector from V shifting it by a bias, i.e. v2 = v1 + bias
+ */
 class ShiftTransformation<T, D : Dimension, V : Vector<T, D>>(
         private val vectorSpace: InnerProductSpace<T, D, V>,
         private val bias: V

@@ -6,6 +6,11 @@ import scientifik.kmath.geometry.Vector
 import scientifik.kmath.operations.invoke
 
 // TODO normalize normal right away?
+/**
+ * Transformation of a vector from V projecting it onto hyperplane
+ * @param normal normal of the hyper plane
+ * @param base point belonging to the hyper plane
+ */
 class ProjectionAlong<T, D : Dimension, V : Vector<T, D>>(
         private val vectorSpace: InnerProductSpace<T, D, V>,
         private val normal: V,

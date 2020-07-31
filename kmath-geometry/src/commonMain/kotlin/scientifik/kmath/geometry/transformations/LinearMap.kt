@@ -5,6 +5,10 @@ import scientifik.kmath.geometry.InnerProductSpace
 import scientifik.kmath.geometry.Vector
 import scientifik.kmath.structures.asSequence
 
+/**
+ * Class to represent linear function from domain V1 to co-domain V2 (v2 = matrix * v1)
+ * @param matrix transformation matrix
+ */
 class LinearMap<T, D1 : Dimension, V1 : Vector<T, D1>, D2 : Dimension, V2 : Vector<T, D2>>(
         override val input: InnerProductSpace<T, D1, V1>,
         override val output: InnerProductSpace<T, D2, V2>,

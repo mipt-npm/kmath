@@ -6,6 +6,11 @@ import scientifik.kmath.geometry.Line
 import scientifik.kmath.geometry.Vector
 import scientifik.kmath.operations.invoke
 
+/**
+ * Transformation of a vector from V projecting it onto line
+ * @param direction direction of the line
+ * @param base point belonging to the line
+ */
 class ProjectionIntoLine<T, D : Dimension, V : Vector<T, D>>(
         private val vectorSpace: InnerProductSpace<T, D, V>,
         private val base: V,
