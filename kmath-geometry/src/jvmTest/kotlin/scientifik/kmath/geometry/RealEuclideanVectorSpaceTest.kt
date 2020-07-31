@@ -9,7 +9,7 @@ import scientifik.kmath.operations.invoke
 internal class RealEuclideanVectorSpaceTest {
     @Test
     fun distance() {
-        real3DVectorSpace {
+        Real3DVectorSpace {
             assertEquals(0.0, distance(zero, zero))
             assertEquals(1.0, distance(zero, vectorOf(1.0, 0.0, 0.0)))
             assertEquals(kotlin.math.sqrt(5.000001), distance(vectorOf(1.0, -2.0, 0.001), zero))
@@ -24,7 +24,7 @@ internal class RealEuclideanVectorSpaceTest {
 
     @Test
     fun norm() {
-        real3DVectorSpace {
+        Real3DVectorSpace {
             assertEquals(0.0, norm(zero))
             assertEquals(1.0, norm(vectorOf(1.0, 0.0, 0.0)))
             assertEquals(kotlin.math.sqrt(3.0), norm(vectorOf(1.0, 1.0, 1.0)))
@@ -34,7 +34,7 @@ internal class RealEuclideanVectorSpaceTest {
 
     @Test
     fun dotProduct() {
-        real3DVectorSpace {
+        Real3DVectorSpace {
             assertEquals(0.0, zero dot zero)
             assertEquals(0.0, zero dot vectorOf(1.0, 0.0, 0.0))
             assertEquals(0.0, vectorOf(1.0, -2.0, 0.001) dot zero)
@@ -51,7 +51,7 @@ internal class RealEuclideanVectorSpaceTest {
 
     @Test
     fun add() {
-        real3DVectorSpace {
+        Real3DVectorSpace {
             assertVectorEquals(
                     vectorOf(1.0, -2.0, 0.001),
                     vectorOf(1.0, -2.0, 0.001) + zero
@@ -65,7 +65,7 @@ internal class RealEuclideanVectorSpaceTest {
 
     @Test
     fun multiply() {
-        real3DVectorSpace {
+        Real3DVectorSpace {
             assertVectorEquals(vectorOf(2.0, -4.0, 0.0), multiply(vectorOf(1.0, -2.0, 0.0), 2))
         }
     }

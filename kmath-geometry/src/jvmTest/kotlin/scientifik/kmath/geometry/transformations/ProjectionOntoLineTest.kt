@@ -7,7 +7,7 @@ import scientifik.kmath.operations.invoke
 internal class ProjectionOntoLineTest {
     @Test
     fun projectionIntoOx() {
-        real2DVectorSpace {
+        Real2DVectorSpace {
             val projectionToOx = projection(Line(zero, vectorOf(1.0, 0.0)))
 
             grid(-10.0..10.0, -10.0..10.0, 0.15).forEach { (x, y) ->
@@ -18,7 +18,7 @@ internal class ProjectionOntoLineTest {
 
     @Test
     fun projectionIntoOy() {
-        real2DVectorSpace {
+        Real2DVectorSpace {
             val transformation = projection(Line(zero, vectorOf(0.0, 1.0)))
 
             grid(-10.0..10.0, -10.0..10.0, 0.15).forEach { (x, y) ->
@@ -29,7 +29,7 @@ internal class ProjectionOntoLineTest {
 
     @Test
     fun projectionIntoYEqualsX() {
-        real2DVectorSpace {
+        Real2DVectorSpace {
             val transformation = projection(Line(zero, vectorOf(1.0, 1.0)))
 
             assertVectorEquals(zero, transformation(zero))
@@ -43,7 +43,7 @@ internal class ProjectionOntoLineTest {
 
     @Test
     fun projectionOntoLine2d() {
-        real2DVectorSpace {
+        Real2DVectorSpace {
             val a = 5.0
             val b = -3.0
             val c = -15.0

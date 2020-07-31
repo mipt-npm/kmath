@@ -7,7 +7,7 @@ import scientifik.kmath.operations.invoke
 internal class MapTransformationTest {
     @Test
     fun identity() {
-        real2DVectorSpace {
+        Real2DVectorSpace {
             val transformation = map { it }
 
             grid(-10.0..10.0, -10.0..10.0, 0.15).forEach { (x, y) ->
@@ -19,7 +19,7 @@ internal class MapTransformationTest {
 
     @Test
     fun swap() {
-        real2DVectorSpace {
+        Real2DVectorSpace {
             val transformation = map { vectorOf(it[1], it[0]) }
 
             grid(-10.0..10.0, -10.0..10.0, 0.15).forEach { (x, y) ->
@@ -30,8 +30,8 @@ internal class MapTransformationTest {
 
     @Test
     fun expand() {
-        real2DVectorSpace {
-            val transformation = mapTo(real4DVectorSpace) { vectorOf(it[0] / 2.0, it[0] + 1.0, 0.0, it[1] - 0.01) }
+        Real2DVectorSpace {
+            val transformation = mapTo(Real4DVectorSpace) { vectorOf(it[0] / 2.0, it[0] + 1.0, 0.0, it[1] - 0.01) }
 
             grid(-10.0..10.0, -10.0..10.0, 0.15).forEach { (x, y) ->
                 assertVectorEquals(vectorOf(x / 2.0, x + 1.0, 0.0, y - 0.01), transformation(vectorOf(x, y)))

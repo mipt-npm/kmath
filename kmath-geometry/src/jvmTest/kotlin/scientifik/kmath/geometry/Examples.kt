@@ -21,15 +21,15 @@ fun main2() {
         println(zero)
     }
 
-    real4DVectorSpace {
+    Real4DVectorSpace {
         val a = vectorOf(1.0, 2.0, 3.0, 5.0)
         val b = vectorOf(2.0, -3.0, 4.0, 5.0)
 
         val transformation = projection(vectorOf(0.0, 0.0, 1.0, 0.0), zero)
-                .mapTo(real3DVectorSpace) { vector -> vectorOf(vector[0], vector[1], vector[3]) }
+                .mapTo(Real3DVectorSpace) { vector -> vectorOf(vector[0], vector[1], vector[3]) }
                 .shiftBy(vectorOf(1.0, -2.0, 0.01))
 
-        val distance = real3DVectorSpace.distance(
+        val distance = Real3DVectorSpace.distance(
                 transformation(a + 3 * b),
                 transformation((a dot b) * b - a / norm(b))
         )

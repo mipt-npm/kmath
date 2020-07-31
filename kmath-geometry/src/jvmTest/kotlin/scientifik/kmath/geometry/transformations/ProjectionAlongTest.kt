@@ -3,14 +3,14 @@ package scientifik.kmath.geometry.transformations
 import org.junit.jupiter.api.Test
 import scientifik.kmath.geometry.assertVectorEquals
 import scientifik.kmath.geometry.grid
-import scientifik.kmath.geometry.real2DVectorSpace
+import scientifik.kmath.geometry.Real2DVectorSpace
 import scientifik.kmath.geometry.vectorOf
 import scientifik.kmath.operations.invoke
 
 internal class ProjectionAlongTest {
     @Test
     fun projectionIntoYEqualsX() {
-        real2DVectorSpace {
+        Real2DVectorSpace {
             val transformation = projection(vectorOf(-2.0, 2.0), vectorOf(2.3, 2.3))
 
             assertVectorEquals(zero, transformation(zero))
@@ -24,7 +24,7 @@ internal class ProjectionAlongTest {
 
     @Test
     fun projectionOntoLine() {
-        real2DVectorSpace {
+        Real2DVectorSpace {
             val a = 5.0
             val b = -3.0
             val c = -15.0

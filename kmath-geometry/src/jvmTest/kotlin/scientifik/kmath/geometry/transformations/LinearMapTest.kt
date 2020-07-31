@@ -8,7 +8,7 @@ import kotlin.math.sqrt
 internal class LinearMapTest {
     @Test
     fun matrixTransformationRotationCounterClockwise90degree() {
-        real2DVectorSpace {
+        Real2DVectorSpace {
             val transformation = mapBy(vectorOf(
                     vectorOf(0.0, -1.0),
                     vectorOf(1.0, 0.0)
@@ -22,7 +22,7 @@ internal class LinearMapTest {
 
     @Test
     fun matrixTransformationRotationClockwise45degree() {
-        real2DVectorSpace {
+        Real2DVectorSpace {
             val a = 1.0 / sqrt(2.0)
             val transformation = mapBy(vectorOf(
                     vectorOf(a, a),
@@ -37,8 +37,8 @@ internal class LinearMapTest {
 
     @Test
     fun matrixRelation() {
-        real3DVectorSpace {
-            val relation = mapBy(real2DVectorSpace, vectorOf(
+        Real3DVectorSpace {
+            val relation = mapBy(Real2DVectorSpace, vectorOf(
                     vectorOf(6.0, -2.0, 100.001),
                     vectorOf(-1.0, 0.0, 3.0)
             ))

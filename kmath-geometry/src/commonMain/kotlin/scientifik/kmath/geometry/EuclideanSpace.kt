@@ -6,8 +6,8 @@ import scientifik.kmath.operations.Field
 import scientifik.kmath.operations.invoke
 import scientifik.kmath.structures.asSequence
 
-data class VectorImpl<T, D : Dimension> internal constructor(private val array: List<T>) : Vector<T, D> {
-    override val size: Int = array.size
+internal data class VectorImpl<T, D : Dimension>(private val array: List<T>) : Vector<T, D> {
+    override val size: Int get() = array.size
 
     override fun get(index: Int): T = when {
         index < 0 || index >= size -> error("Accessing outside of point bounds")

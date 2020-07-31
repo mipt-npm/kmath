@@ -6,7 +6,7 @@ import scientifik.kmath.operations.RealField
 import kotlin.math.sqrt
 
 data class RealVector<D : Dimension>(private val array: DoubleArray) : Vector<Double, D> {
-    override val size: Int = array.size
+    override val size: Int get() = array.size
 
     override fun get(index: Int): Double = when {
         index < 0 || index >= size -> error("Accessing outside of point bounds")
@@ -26,7 +26,7 @@ data class RealVector<D : Dimension>(private val array: DoubleArray) : Vector<Do
 
     override fun hashCode(): Int = array.contentHashCode()
 
-    override fun toString(): String = array.contentToString()
+    override fun toString(): String = "RealVector(${array.contentToString()})"
 }
 
 fun vectorOf(a1: Double): RealVector<D1> = RealVector(doubleArrayOf(a1))
@@ -40,7 +40,7 @@ class RealEuclideanVectorSpace<D : Dimension>(override val dim: D) : InnerProduc
     private val dimSize = dim.dim.toInt()
     private val range = 0 until dimSize
 
-    override val field: ExtendedField<Double> = RealField
+    override val field: ExtendedField<Double> get() = RealField
 
     override fun distance(a: RealVector<D>, b: RealVector<D>): Double =
             sqrt(range.fold(0.0) { acc, index -> val d = a[index] - b[index]; acc + d * d })
@@ -59,7 +59,6 @@ class RealEuclideanVectorSpace<D : Dimension>(override val dim: D) : InnerProduc
 
     override val zero: RealVector<D> = RealVector(DoubleArray(dimSize))
 
-
     override fun vectorFrom(x: Sequence<Double>): RealVector<D> {
         val array = x.toList().toDoubleArray()
         require(array.size == dimSize)
@@ -68,8 +67,8 @@ class RealEuclideanVectorSpace<D : Dimension>(override val dim: D) : InnerProduc
 
 }
 
-val real1DVectorSpace = RealEuclideanVectorSpace(D1)
-val real2DVectorSpace = RealEuclideanVectorSpace(D2)
-val real3DVectorSpace = RealEuclideanVectorSpace(D3)
-val real4DVectorSpace = RealEuclideanVectorSpace(D4)
-val real5DVectorSpace = RealEuclideanVectorSpace(D5)
+val Real1DVectorSpace = RealEuclideanVectorSpace(D1)
+val Real2DVectorSpace = RealEuclideanVectorSpace(D2)
+val Real3DVectorSpace = RealEuclideanVectorSpace(D3)
+val Real4DVectorSpace = RealEuclideanVectorSpace(D4)
+val Real5DVectorSpace = RealEuclideanVectorSpace(D5)
