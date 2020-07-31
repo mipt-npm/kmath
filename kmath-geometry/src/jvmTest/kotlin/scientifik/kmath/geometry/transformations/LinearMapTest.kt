@@ -2,12 +2,13 @@ package scientifik.kmath.geometry.transformations
 
 import org.junit.jupiter.api.Test
 import scientifik.kmath.geometry.*
+import scientifik.kmath.operations.invoke
 import kotlin.math.sqrt
 
 internal class LinearMapTest {
     @Test
     fun matrixTransformationRotationCounterClockwise90degree() {
-        with(real2DVectorSpace) {
+        real2DVectorSpace {
             val transformation = mapBy(vectorOf(
                     vectorOf(0.0, -1.0),
                     vectorOf(1.0, 0.0)
@@ -21,7 +22,7 @@ internal class LinearMapTest {
 
     @Test
     fun matrixTransformationRotationClockwise45degree() {
-        with(real2DVectorSpace) {
+        real2DVectorSpace {
             val a = 1.0 / sqrt(2.0)
             val transformation = mapBy(vectorOf(
                     vectorOf(a, a),
@@ -36,7 +37,7 @@ internal class LinearMapTest {
 
     @Test
     fun matrixRelation() {
-        with(real3DVectorSpace) {
+        real3DVectorSpace {
             val relation = mapBy(real2DVectorSpace, vectorOf(
                     vectorOf(6.0, -2.0, 100.001),
                     vectorOf(-1.0, 0.0, 3.0)

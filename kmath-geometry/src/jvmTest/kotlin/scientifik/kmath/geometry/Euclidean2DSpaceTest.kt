@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import scientifik.kmath.dimensions.D2
 import scientifik.kmath.operations.RealField
+import scientifik.kmath.operations.invoke
 
 internal class Euclidean2DSpaceTest {
     @Test
@@ -23,7 +24,7 @@ internal class Euclidean2DSpaceTest {
 
     @Test
     fun norm() {
-        with(Euclidean2DSpace) {
+        Euclidean2DSpace {
             assertEquals(0.0, norm(zero))
             assertEquals(1.0, norm(Vector2D(1.0, 0.0)))
             assertEquals(kotlin.math.sqrt(2.0), norm(Vector2D(1.0, 1.0)))
@@ -33,7 +34,7 @@ internal class Euclidean2DSpaceTest {
 
     @Test
     fun dotProduct() {
-        with(Euclidean2DSpace) {
+        Euclidean2DSpace {
             assertEquals(0.0, zero dot zero)
             assertEquals(0.0, zero dot Vector2D(1.0, 0.0))
             assertEquals(0.0, Vector2D(-2.0, 0.001) dot zero)
@@ -50,7 +51,7 @@ internal class Euclidean2DSpaceTest {
 
     @Test
     fun add() {
-        with(Euclidean2DSpace) {
+        Euclidean2DSpace {
             assertVectorEquals(
                     Vector2D(-2.0, 0.001),
                     Vector2D(-2.0, 0.001) + zero
@@ -64,7 +65,7 @@ internal class Euclidean2DSpaceTest {
 
     @Test
     fun multiply() {
-        with(Euclidean2DSpace) {
+        Euclidean2DSpace {
             assertVectorEquals(Vector2D(-4.0, 0.0), multiply(Vector2D(-2.0, 0.0), 2))
             assertVectorEquals(Vector2D(4.0, 0.0), multiply(Vector2D(-2.0, 0.0), -2))
             assertVectorEquals(Vector2D(300.0, 0.0003), multiply(Vector2D(100.0, 0.0001), 3))

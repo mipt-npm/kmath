@@ -3,6 +3,7 @@ package scientifik.kmath.geometry
 import scientifik.kmath.dimensions.*
 import scientifik.kmath.operations.ExtendedField
 import scientifik.kmath.operations.Field
+import scientifik.kmath.operations.invoke
 import scientifik.kmath.structures.asSequence
 
 data class VectorImpl<T, D : Dimension> internal constructor(private val array: List<T>) : Vector<T, D> {
@@ -31,7 +32,7 @@ class EuclideanSpace<T : Any, D : Dimension>(
     private val dimSize = dim.dim.toInt()
 
     override fun distance(a: Vector<T, D>, b: Vector<T, D>): T =
-            field.sqrt(a.asSequence().zip(b.asSequence()).map { (l, r) -> with(field) { square(l - r) } }.reduce(field::add))
+            field.sqrt(a.asSequence().zip(b.asSequence()).map { (l, r) -> field { square(l - r) } }.reduce(field::add))
 
     override fun norm(a: Vector<T, D>): T =
             field.sqrt(dotProduct(a, a))

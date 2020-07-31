@@ -4,6 +4,7 @@ import scientifik.kmath.dimensions.Dimension
 import scientifik.kmath.geometry.InnerProductSpace
 import scientifik.kmath.geometry.Line
 import scientifik.kmath.geometry.Vector
+import scientifik.kmath.operations.invoke
 
 class ProjectionIntoLine<T, D : Dimension, V : Vector<T, D>>(
         private val vectorSpace: InnerProductSpace<T, D, V>,
@@ -14,8 +15,8 @@ class ProjectionIntoLine<T, D : Dimension, V : Vector<T, D>>(
     private val dDotB = vectorSpace.dotProduct(direction, base)
 
     // base + (direction dot (v - base)) / (direction dot direction) * direction
-    override fun invoke(v: V): V = with(vectorSpace) {
-        base + direction * with(field) {
+    override fun invoke(v: V): V = vectorSpace {
+        base + direction * field {
             ((direction dot v) - dDotB) / dDotD
         }
     }

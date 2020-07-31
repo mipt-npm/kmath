@@ -9,7 +9,7 @@ data class Line<T, D : Dimension, V : Vector<T, D>>(val base: V, val direction: 
 
 // TODO assert that p1 != p2
 fun <T, D : Dimension, V : Vector<T, D>> VectorSpace<T, D, V>.lineThrough(p1: V, p2: V): Line<T, D, V> =
-        Line(p1, with(this) { p2 - p1 })
+        Line(p1, p2 - p1)
 
 typealias Line2D<T, V> = Line<T, D2, V>
 typealias Line3D<T, V> = Line<T, D3, V>

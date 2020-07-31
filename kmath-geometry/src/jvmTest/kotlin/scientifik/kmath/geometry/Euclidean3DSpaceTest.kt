@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import scientifik.kmath.dimensions.D3
 import scientifik.kmath.operations.RealField
+import scientifik.kmath.operations.invoke
 
 internal class Euclidean3DSpaceTest {
     @Test
@@ -23,7 +24,7 @@ internal class Euclidean3DSpaceTest {
 
     @Test
     fun distance() {
-        with(Euclidean3DSpace) {
+        Euclidean3DSpace {
             assertEquals(0.0, distance(zero, zero))
             assertEquals(1.0, distance(zero, Vector3D(1.0, 0.0, 0.0)))
             assertEquals(kotlin.math.sqrt(5.000001), distance(Vector3D(1.0, -2.0, 0.001), zero))
@@ -38,7 +39,7 @@ internal class Euclidean3DSpaceTest {
 
     @Test
     fun norm() {
-        with(Euclidean3DSpace) {
+        Euclidean3DSpace {
             assertEquals(0.0, norm(zero))
             assertEquals(1.0, norm(Vector3D(1.0, 0.0, 0.0)))
             assertEquals(kotlin.math.sqrt(3.0), norm(Vector3D(1.0, 1.0, 1.0)))
@@ -48,7 +49,7 @@ internal class Euclidean3DSpaceTest {
 
     @Test
     fun dotProduct() {
-        with(Euclidean3DSpace) {
+        Euclidean3DSpace {
             assertEquals(0.0, zero dot zero)
             assertEquals(0.0, zero dot Vector3D(1.0, 0.0, 0.0))
             assertEquals(0.0, Vector3D(1.0, -2.0, 0.001) dot zero)
@@ -65,7 +66,7 @@ internal class Euclidean3DSpaceTest {
 
     @Test
     fun add() {
-        with(Euclidean3DSpace) {
+        Euclidean3DSpace {
             assertVectorEquals(
                     Vector3D(1.0, -2.0, 0.001),
                     Vector3D(1.0, -2.0, 0.001) + zero
@@ -79,7 +80,7 @@ internal class Euclidean3DSpaceTest {
 
     @Test
     fun multiply() {
-        with(Euclidean3DSpace) {
+        Euclidean3DSpace {
             assertVectorEquals(Vector3D(2.0, -4.0, 0.0), multiply(Vector3D(1.0, -2.0, 0.0), 2))
         }
     }

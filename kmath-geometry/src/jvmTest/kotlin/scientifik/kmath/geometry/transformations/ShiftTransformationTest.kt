@@ -2,11 +2,12 @@ package scientifik.kmath.geometry.transformations
 
 import org.junit.jupiter.api.Test
 import scientifik.kmath.geometry.*
+import scientifik.kmath.operations.invoke
 
 internal class ShiftTransformationTest {
     @Test
     fun shiftBy0() {
-        with(real2DVectorSpace) {
+        real2DVectorSpace {
             val transformation = shiftBy(zero)
 
             grid(-10.0..10.0, -10.0..10.0, 0.15).forEach { (x, y) ->
@@ -15,7 +16,7 @@ internal class ShiftTransformationTest {
             }
         }
 
-        with(real3DVectorSpace) {
+        real3DVectorSpace {
             val transformation = shiftBy(zero)
 
             grid(-10.0..10.0, -10.0..10.0, 0.15).forEach { (x, y) ->
@@ -27,7 +28,7 @@ internal class ShiftTransformationTest {
 
     @Test
     fun shift() {
-        with(real4DVectorSpace) {
+        real4DVectorSpace {
             val transformation = shiftBy(vectorOf(1.0, -2.0, 0.01, 111.0))
 
             grid(-10.0..10.0, -10.0..10.0, 0.15).forEach { (a, b) ->

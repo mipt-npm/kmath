@@ -3,6 +3,7 @@ package scientifik.kmath.geometry.transformations
 import scientifik.kmath.dimensions.Dimension
 import scientifik.kmath.geometry.InnerProductSpace
 import scientifik.kmath.geometry.Vector
+import scientifik.kmath.operations.invoke
 
 // TODO normalize normal right away?
 class ProjectionAlong<T, D : Dimension, V : Vector<T, D>>(
@@ -10,7 +11,7 @@ class ProjectionAlong<T, D : Dimension, V : Vector<T, D>>(
         private val normal: V,
         private val base: V
 ) : Transformation<T, D, V> {
-    override fun invoke(v: V): V = with(vectorSpace) {
+    override fun invoke(v: V): V = vectorSpace {
         v + normal * field.divide((base - v) dot normal, normal dot normal)
     }
 

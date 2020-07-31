@@ -5,9 +5,10 @@ import scientifik.kmath.geometry.transformations.mapTo
 import scientifik.kmath.geometry.transformations.projection
 import scientifik.kmath.geometry.transformations.shiftBy
 import scientifik.kmath.operations.RealField
+import scientifik.kmath.operations.invoke
 
 fun main2() {
-    with(EuclideanSpace(D4, RealField)) {
+    (EuclideanSpace(D4, RealField)) {
         val a: VectorImpl<Double, D4> = VectorImpl(listOf(1.0, 2.0, 3.0, 5.0))
         val b = vectorOf(2.0, -3.0, 4.0, 5.0)
         println(a - b)
@@ -20,7 +21,7 @@ fun main2() {
         println(zero)
     }
 
-    with(real4DVectorSpace) {
+    real4DVectorSpace {
         val a = vectorOf(1.0, 2.0, 3.0, 5.0)
         val b = vectorOf(2.0, -3.0, 4.0, 5.0)
 
@@ -38,7 +39,7 @@ fun main2() {
 }
 
 fun main() {
-    with(Euclidean3DSpace) {
+    Euclidean3DSpace {
         val a = Vector3D(1.0, -2.0, 0.01)
         val b = Vector3D(1.0, 2.0, 3.0)
 

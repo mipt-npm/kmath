@@ -2,11 +2,12 @@ package scientifik.kmath.geometry.transformations
 
 import org.junit.jupiter.api.Test
 import scientifik.kmath.geometry.*
+import scientifik.kmath.operations.invoke
 
 internal class MapTransformationTest {
     @Test
     fun identity() {
-        with(real2DVectorSpace) {
+        real2DVectorSpace {
             val transformation = map { it }
 
             grid(-10.0..10.0, -10.0..10.0, 0.15).forEach { (x, y) ->
@@ -18,7 +19,7 @@ internal class MapTransformationTest {
 
     @Test
     fun swap() {
-        with(real2DVectorSpace) {
+        real2DVectorSpace {
             val transformation = map { vectorOf(it[1], it[0]) }
 
             grid(-10.0..10.0, -10.0..10.0, 0.15).forEach { (x, y) ->
@@ -29,7 +30,7 @@ internal class MapTransformationTest {
 
     @Test
     fun expand() {
-        with(real2DVectorSpace) {
+        real2DVectorSpace {
             val transformation = mapTo(real4DVectorSpace) { vectorOf(it[0] / 2.0, it[0] + 1.0, 0.0, it[1] - 0.01) }
 
             grid(-10.0..10.0, -10.0..10.0, 0.15).forEach { (x, y) ->
