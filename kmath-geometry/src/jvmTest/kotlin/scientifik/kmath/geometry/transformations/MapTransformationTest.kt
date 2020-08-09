@@ -1,6 +1,6 @@
 package scientifik.kmath.geometry.transformations
 
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
 import scientifik.kmath.geometry.*
 import scientifik.kmath.operations.invoke
 

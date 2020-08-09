@@ -1,7 +1,7 @@
 package scientifik.kmath.geometry
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import kotlin.test.assertEquals
+import kotlin.test.Test
 import scientifik.kmath.structures.asSequence
 
 internal class Vector3DTest {

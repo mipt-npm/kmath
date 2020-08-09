@@ -1,7 +1,7 @@
 package scientifik.kmath.geometry
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import kotlin.test.assertEquals
+import kotlin.test.Test
 import scientifik.kmath.dimensions.*
 import scientifik.kmath.operations.RealField
 import scientifik.kmath.operations.invoke
