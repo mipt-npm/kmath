@@ -54,8 +54,11 @@ class RealEuclideanVectorSpace<D : Dimension>(override val dim: D) : InnerProduc
     override fun add(a: RealVector<D>, b: RealVector<D>): RealVector<D> =
             RealVector(DoubleArray(dimSize) { index -> a[index] + b[index] })
 
+    override fun multiply(a: RealVector<D>, k: Double): RealVector<D> =
+            RealVector(DoubleArray(dimSize) { index -> a[index] * k })
+
     override fun multiply(a: RealVector<D>, k: Number): RealVector<D> =
-            RealVector(DoubleArray(dimSize) { index -> a[index] * k.toDouble() })
+            multiply(a, k.toDouble())
 
     override val zero: RealVector<D> = RealVector(DoubleArray(dimSize))
 
@@ -64,7 +67,6 @@ class RealEuclideanVectorSpace<D : Dimension>(override val dim: D) : InnerProduc
         require(array.size == dimSize)
         return RealVector(array)
     }
-
 }
 
 val Real1DVectorSpace = RealEuclideanVectorSpace(D1)

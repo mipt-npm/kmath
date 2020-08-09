@@ -44,8 +44,11 @@ object Euclidean2DSpace : InnerProductSpace<Double, D2, Vector2D> {
     override fun add(a: Vector2D, b: Vector2D): Vector2D =
             Vector2D(a.x + b.x, a.y + b.y)
 
+    override fun multiply(a: Vector2D, k: Double): Vector2D =
+            Vector2D(a.x * k, a.y * k)
+
     override fun multiply(a: Vector2D, k: Number): Vector2D =
-            Vector2D(a.x * k.toDouble(), a.y * k.toDouble())
+            multiply(a, k.toDouble())
 
     override fun vectorFrom(x: Sequence<Double>): Vector2D {
         val iterator = x.iterator()

@@ -10,8 +10,7 @@ interface Vector<T, D : Dimension> : Point<T>
 interface VectorSpace<T, D : Dimension, V : Vector<T, D>> : Space<V> {
     fun vectorFrom(x: Sequence<T>): V
 
-    // TODO what about it?
-    fun multiply(a: V, k: T): V = multiply(a, k as Number)
+    fun multiply(a: V, k: T): V
 
     operator fun V.times(k: T) = multiply(this, k)
     operator fun T.times(v: V) = multiply(v, this)

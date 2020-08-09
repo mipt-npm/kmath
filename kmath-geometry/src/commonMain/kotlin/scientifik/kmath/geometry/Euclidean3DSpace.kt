@@ -43,8 +43,11 @@ object Euclidean3DSpace : InnerProductSpace<Double, D3, Vector3D> {
     override fun add(a: Vector3D, b: Vector3D): Vector3D =
             Vector3D(a.x + b.x, a.y + b.y, a.z + b.z)
 
+    override fun multiply(a: Vector3D, k: Double): Vector3D =
+            Vector3D(a.x * k, a.y * k, a.z * k)
+
     override fun multiply(a: Vector3D, k: Number): Vector3D =
-            Vector3D(a.x * k.toDouble(), a.y * k.toDouble(), a.z * k.toDouble())
+            multiply(a, k.toDouble())
 
     override fun vectorFrom(x: Sequence<Double>): Vector3D {
         val iterator = x.iterator()

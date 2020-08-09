@@ -46,6 +46,9 @@ class EuclideanSpace<T : Any, D : Dimension>(
     override fun multiply(a: Vector<T, D>, k: Number): Vector<T, D> =
             vectorFrom(a.asSequence().map { field.multiply(it, k) })
 
+    override fun multiply(a: Vector<T, D>, k: T): Vector<T, D> =
+            vectorFrom(a.asSequence().map { field.multiply(it, k) })
+
     override val zero: Vector<T, D> =
             vectorFrom(generateSequence { field.zero }.take(dimSize))
 
