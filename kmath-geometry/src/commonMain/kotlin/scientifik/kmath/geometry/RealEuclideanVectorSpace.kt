@@ -5,7 +5,7 @@ import scientifik.kmath.operations.ExtendedField
 import scientifik.kmath.operations.RealField
 import kotlin.math.sqrt
 
-data class RealVector<D : Dimension>(private val array: DoubleArray) : Vector<Double, D> {
+class RealVector<D : Dimension> internal constructor(private val array: DoubleArray) : Vector<Double, D> {
     override val size: Int get() = array.size
 
     override fun get(index: Int): Double = when {
