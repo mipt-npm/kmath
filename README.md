@@ -20,7 +20,6 @@ be achieved with [kmath-for-real](/kmath-for-real) extension module.
 * [ACAT 2019 conference paper](https://aip.scitation.org/doi/abs/10.1063/1.5130103)
 
 # Goal
-
 * Provide a flexible and powerful API to work with mathematics abstractions in Kotlin-multiplatform (JVM, JS and Native). 
 * Provide basic multiplatform implementations for those abstractions (without significant performance optimization).
 * Provide bindings and wrappers with those abstractions for popular optimized platform libraries.
