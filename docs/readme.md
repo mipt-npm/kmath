@@ -1,4 +1,4 @@
-# Features
+# Documentation
 
 * [Algebra](algebra.md) - [Context-based](contexts.md) operations on different primitives and structures.
 
