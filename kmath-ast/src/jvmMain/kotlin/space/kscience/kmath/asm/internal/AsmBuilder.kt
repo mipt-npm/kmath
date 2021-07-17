@@ -199,10 +199,12 @@ internal class AsmBuilder<T>(
         val l = MethodHandles.publicLookup()
 
         if (hasConstants)
-            l.findConstructor(cls, MethodType.methodType(Void.TYPE, Array<Any>::class.java))
-                .invoke(constants.toTypedArray()) as Expression<T>
+            l.findConstructor(
+                cls,
+                MethodType.methodType(Void.TYPE, Array<Any>::class.java),
+            )(constants.toTypedArray()) as Expression<T>
         else
-            l.findConstructor(cls, MethodType.methodType(Void.TYPE)).invoke() as Expression<T>
+            l.findConstructor(cls, MethodType.methodType(Void.TYPE))() as Expression<T>
     }
 
     /**
