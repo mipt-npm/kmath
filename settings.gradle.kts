@@ -41,6 +41,7 @@ include(
     ":kmath-kotlingrad",
     ":kmath-tensors",
     ":kmath-jupyter",
+    ":kmath-units",
     ":kmath-symja",
     ":kmath-jafama",
     ":examples",
