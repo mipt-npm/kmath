@@ -10,9 +10,9 @@ import java.math.BigInteger
 import java.math.MathContext
 
 /**
- * A field over [BigInteger].
+ * A ring over [BigInteger].
  */
-public object JBigIntegerField : Ring<BigInteger>, NumericAlgebra<BigInteger> {
+public object JBigIntegerRing : Ring<BigInteger>, NumericAlgebra<BigInteger> {
     public override val zero: BigInteger get() = BigInteger.ZERO
 
     public override val one: BigInteger get() = BigInteger.ONE
